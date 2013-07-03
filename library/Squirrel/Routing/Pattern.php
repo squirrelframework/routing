@@ -34,7 +34,7 @@ class Pattern
 
     /**
      * @param string $pattern Pattern to match.
-     * @param array $custom Custom expressions for pattern variables.
+     * @param string[string] $custom Custom expressions for pattern variables.
      */
     public function __construct($pattern, array $custom = array())
     {
@@ -47,7 +47,7 @@ class Pattern
      * Returns whether given string matches the current pattern.
      * 
      * @param string $string The string to test.
-     * @param array $params Container for output parameters.
+     * @param string[string] $params Container for output parameters.
      * @return boolean
      */
     public function match($string, array & $params = null)
@@ -74,7 +74,7 @@ class Pattern
      * Generates a string from current pattern with given parameters.
      * 
      * @throws \InvalidArgumentException If a required parameter is not provided.
-     * @param array $params
+     * @param string[string] $params
      * @return string
      */
     public function generate(array $params = array())

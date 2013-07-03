@@ -14,7 +14,7 @@ class Route
 {
     /**
      * @param string $pattern Pattern to match.
-     * @param array $custom Custom expressions for pattern variables.
+     * @param string[string] $custom Custom expressions for pattern variables.
      */
     public function __construct(Pattern $pattern, array $defaults = array())
     {
@@ -26,13 +26,17 @@ class Route
      * Proxy for the pattern match function.
      * 
      * @param string $string The string to test.
-     * @param array $params Container for output parameters.
+     * @param string[string] $params Container for output parameters.
      * @return boolean
      */
     public function match($string, array & $params = null)
     {
         $match = $this->pattern->match($string, $params);
-        $params = array_merge($this->defaults, $params);
+
+        if (isset($params)) {
+            $params = array_merge($this->defaults, $params);
+        }
+        
         return $match;
     }
 
@@ -40,7 +44,7 @@ class Route
      * Proxy for the pattern generate function with default values override.
      *
      * @throws \InvalidArgumentException If a required parameter is not provided.
-     * @param array $params
+     * @param string[string] $params
      * @return string
      */
     public function generate(array $params = array())

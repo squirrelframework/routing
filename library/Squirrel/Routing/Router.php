@@ -38,7 +38,7 @@ class Router
      * Tries to match given string to all contained routes.
      * 
      * @param string $string The string to test.
-     * @param array $params Container for output parameters.
+     * @param string[string] $params Container for output parameters.
      * @return boolean
      */
     public function match($string, array & $params = null)
@@ -58,7 +58,7 @@ class Router
      * @throws \InvalidArgumentException If the route does not exists.
      * @throws \InvalidArgumentException If a required parameter is not provided.
      * @param string $name
-     * @param array $params
+     * @param string[string] $params
      * @return string
      */
     public function generate($name, array $params = array())
